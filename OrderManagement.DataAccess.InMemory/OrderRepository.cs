@@ -23,7 +23,7 @@ namespace OrderManagement.DataAccess.InMemory
 
         public Task<List<Order>> GetOrdersAsync()
         {
-            _logger.LogInformation("Retrieving orders from the data access layer");
+            _logger.LogInformation($"Retrieving orders from the data access layer: {_config.ConnectionString}");
             return Task.FromResult(_orders);
         }
 
