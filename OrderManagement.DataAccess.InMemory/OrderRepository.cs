@@ -24,7 +24,13 @@ namespace OrderManagement.DataAccess.InMemory
         public Task<List<Order>> GetOrdersAsync()
         {
             _logger.LogInformation($"Retrieving orders from the data access layer: {_config.ConnectionString}");
-            return Task.FromResult(_orders);
+
+            var orders = new List<Order>
+            {
+                new Order {OrderId = _config?.ConnectionString, Total = 100}
+            };
+
+            return Task.FromResult(orders);
         }
 
         public Task<bool> CreateOrderAsync(Order order)
