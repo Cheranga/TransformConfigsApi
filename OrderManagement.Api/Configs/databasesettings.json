@@ -1,0 +1,5 @@
+{
+  "OrdersDbConfig": {
+    "ConnectionString":  "[Database connection string]" 
+  } 
+}

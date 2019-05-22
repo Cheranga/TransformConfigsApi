@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Api", "OrderManagement.Api\OrderManagement.Api.csproj", "{A11F8E8A-001D-46C5-BEB9-FA41642C3CFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.Api", "OrderManagement.Api\OrderManagement.Api.csproj", "{A11F8E8A-001D-46C5-BEB9-FA41642C3CFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Services", "OrderManagement.Services\OrderManagement.Services.csproj", "{FBB08913-D7FB-4167-84D4-DB953D7D97F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.Services", "OrderManagement.Services\OrderManagement.Services.csproj", "{FBB08913-D7FB-4167-84D4-DB953D7D97F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.DataAccess.InMemory", "OrderManagement.DataAccess.InMemory\OrderManagement.DataAccess.InMemory.csproj", "{5DD25157-140B-4D95-9F4B-2E23303DC1B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.DataAccess.InMemory", "OrderManagement.DataAccess.InMemory\OrderManagement.DataAccess.InMemory.csproj", "{5DD25157-140B-4D95-9F4B-2E23303DC1B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Domain", "OrderManagement.Domain\OrderManagement.Domain.csproj", "{E0D6ECC7-DB84-4B1E-BCDB-02EEA45062EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{5DD25157-140B-4D95-9F4B-2E23303DC1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DD25157-140B-4D95-9F4B-2E23303DC1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DD25157-140B-4D95-9F4B-2E23303DC1B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0D6ECC7-DB84-4B1E-BCDB-02EEA45062EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0D6ECC7-DB84-4B1E-BCDB-02EEA45062EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0D6ECC7-DB84-4B1E-BCDB-02EEA45062EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0D6ECC7-DB84-4B1E-BCDB-02EEA45062EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

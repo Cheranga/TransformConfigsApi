@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using OrderManagement.DataAccess.InMemory;
+using OrderManagement.Services;
 
 namespace OrderManagement.Api
 {
@@ -24,7 +19,14 @@ namespace OrderManagement.Api
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {   
+            var config = new OrdersDbConfig();
+            Configuration.Bind("OrdersDbConfig", config);
+
+            services.UseOrderManagementServices();
+            services.UseInMemoryDataAccess(config);
+
+            services.AddLogging();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
