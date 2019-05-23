@@ -1,12 +1,18 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using OrderManagement.DataAccess.InMemory;
 
 namespace OrderManagement.Services
 {
     public static class Bootstrapper
     {
-        public static void UseOrderManagementServices(this IServiceCollection services)
+        public static void UseCustomerManagementServices(this IServiceCollection services)
         {
-            services?.AddScoped<IOrderManagementService, OrderManagementService>();
+            if (services == null)
+            {
+                return;
+            }
+
+            services.AddSingleton<ICustomerManagementService, CustomerManagementService>();
         }
     }
 }

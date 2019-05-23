@@ -1,6 +1,6 @@
 ﻿namespace OrderManagement.DataAccess.InMemory
 {
-    public class OrdersDbConfig
+    public class MyShopDbConfig
     {
         public string ConnectionString { get; set; }
     }

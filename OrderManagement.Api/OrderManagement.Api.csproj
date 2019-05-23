@@ -13,9 +13,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrderManagement.Services\OrderManagement.Services.csproj" />
+    <ProjectReference Include="..\OrderManagement.Shipping.Api\OrderManagement.Shipping.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Configs\externalapisettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Configs\databasesettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

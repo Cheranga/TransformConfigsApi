@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OrderManagement.DataAccess.InMemory;
 using OrderManagement.Services;
+using OrderManagement.Shipping.Api;
 
 namespace OrderManagement.Api
 {
@@ -20,11 +21,17 @@ namespace OrderManagement.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {   
-            var config = new OrdersDbConfig();
-            Configuration.Bind("OrdersDbConfig", config);
+            var dbConfig = new MyShopDbConfig();
+            Configuration.Bind("DbConfig", dbConfig);
 
-            services.UseOrderManagementServices();
-            services.UseInMemoryDataAccess(config);
+            var apiConfig = new ExternalCustomersApiConfig();
+            Configuration.Bind("ApiConfig", apiConfig);
+
+            services.UseCustomerManagementServices();
+            services.UseFakeCustomerDataAccess(dbConfig);
+            services.UseExternalCustomersApi(apiConfig);
+            
+            
 
             services.AddLogging();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

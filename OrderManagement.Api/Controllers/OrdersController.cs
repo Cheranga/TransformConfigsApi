@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OrderManagement.Domain;
 using OrderManagement.Services;
+using OrderManagement.Shipping.Api;
 
 namespace OrderManagement.Api.Controllers
 {
@@ -12,12 +13,12 @@ namespace OrderManagement.Api.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly IOrderManagementService _service;
+        private readonly ICustomerManagementService _orderManagementService;
         private readonly ILogger<OrdersController> _logger;
 
-        public OrdersController(IOrderManagementService service, ILogger<OrdersController> logger)
+        public OrdersController(ICustomerManagementService orderManagementService, ILogger<OrdersController> logger)
         {
-            _service = service;
+            _orderManagementService = orderManagementService;
             _logger = logger;
         }
 
@@ -25,7 +26,7 @@ namespace OrderManagement.Api.Controllers
         public async Task<IActionResult> Get()
         {
             _logger.LogInformation("Getting orders");
-            var orders = await _service.GetOrdersAsync();
+            var orders = await _orderManagementService.GetCustomersAsync();
 
             if (orders == null || !orders.Any())
             {
@@ -33,20 +34,6 @@ namespace OrderManagement.Api.Controllers
             }
 
             return Ok(orders);
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Order order)
-        {
-            var status = await _service.CreateOrderAsync(order);
-
-            if (status)
-            {
-                return Ok();
-            }
-
-            return StatusCode((int) HttpStatusCode.InternalServerError);
         }
     }
 }

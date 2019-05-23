@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace OrderManagement.DataAccess.InMemory
+namespace OrderManagement.Shipping.Api
 {
     public static class Bootstrapper
     {
-        public static void UseFakeCustomerDataAccess(this IServiceCollection services, MyShopDbConfig config)
+        public static void UseExternalCustomersApi(this IServiceCollection services, ExternalCustomersApiConfig config)
         {
             if (services == null)
             {
@@ -12,7 +12,7 @@ namespace OrderManagement.DataAccess.InMemory
             }
 
             services.AddSingleton(config);
-            services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            services.AddSingleton<IExternalCustomersApi, ExternalCustomersApiService>();
         }
     }
 }

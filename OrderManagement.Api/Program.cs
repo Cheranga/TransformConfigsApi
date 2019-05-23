@@ -18,6 +18,7 @@ namespace OrderManagement.Api
                 {
                     builder.AddJsonFile("appsettings.json")
                         .AddJsonFile("Configs/databasesettings.json")
+                        .AddJsonFile("Configs/externalapisettings.json")
                         .AddEnvironmentVariables();
                 })
                 .UseStartup<Startup>();

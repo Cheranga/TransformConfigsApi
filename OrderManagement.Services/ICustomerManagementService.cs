@@ -4,9 +4,8 @@ using OrderManagement.Domain;
 
 namespace OrderManagement.Services
 {
-    public interface IOrderManagementService
+    public interface ICustomerManagementService
     {
-        Task<List<Order>> GetOrdersAsync();
-        Task<bool> CreateOrderAsync(Order order);
+        Task<List<Customer>> GetCustomersAsync();
     }
 }

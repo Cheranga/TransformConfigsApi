@@ -4,9 +4,8 @@ using OrderManagement.Domain;
 
 namespace OrderManagement.DataAccess.InMemory
 {
-    public interface IOrdersRepository
+    public interface ICustomerRepository
     {
-        Task<List<Order>> GetOrdersAsync();
-        Task<bool> CreateOrderAsync(Order order);
+        Task<List<Customer>> GetCustomersAsync();
     }
 }
