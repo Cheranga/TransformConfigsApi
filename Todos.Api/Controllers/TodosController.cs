@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Todos.Api.Abstractions;
 
 namespace Todos.Api.Controllers
@@ -10,27 +9,24 @@ namespace Todos.Api.Controllers
     [ApiController]
     public class TodosController : ControllerBase
     {
-        private readonly ITodoManagementService _orderManagementService;
-        private readonly ILogger<TodosController> _logger;
+        private readonly ITodoManagementService _todoManagementService;
 
-        public TodosController(ITodoManagementService orderManagementService, ILogger<TodosController> logger)
+        public TodosController(ITodoManagementService todoManagementService)
         {
-            _orderManagementService = orderManagementService;
-            _logger = logger;
+            _todoManagementService = todoManagementService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            _logger.LogInformation("Getting orders");
-            var orders = await _orderManagementService.GetTodosAsync();
+            var todos = await _todoManagementService.GetTodosAsync();
 
-            if (orders == null || !orders.Any())
+            if (todos == null || !todos.Any())
             {
                 return NotFound();
             }
 
-            return Ok(orders);
+            return Ok(todos);
         }
     }
 }

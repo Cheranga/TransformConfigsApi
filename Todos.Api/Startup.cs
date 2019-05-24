@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Todos.Api.Abstractions;
 using Todos.Api.Configs;
+using Todos.Api.DataAccess;
+using Todos.Api.Services;
 
 namespace Todos.Api
 {
@@ -18,15 +21,25 @@ namespace Todos.Api
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {   
+        {
+            RegisterDependencies(services);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+        }
+
+        private void RegisterDependencies(IServiceCollection services)
+        {
             var dbConfig = new TodoDbConfig();
             Configuration.Bind("DbConfig", dbConfig);
 
             var apiConfig = new ExternalTodoApiConfig();
             Configuration.Bind("ApiConfig", apiConfig);
 
-            services.AddLogging();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSingleton(dbConfig);
+            services.AddSingleton(apiConfig);
+            services.AddSingleton<ITodoManagementService, TodoManagementService>();
+            services.AddSingleton<ITodoRepository, FakeTodoRepository>();
+            services.AddSingleton<IExternalTodoApi, FakeExternalTodoApiService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
