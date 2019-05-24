@@ -3,11 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OrderManagement.DataAccess.InMemory;
-using OrderManagement.Services;
-using OrderManagement.Shipping.Api;
+using Todos.Api.Configs;
 
-namespace OrderManagement.Api
+namespace Todos.Api
 {
     public class Startup
     {
@@ -21,17 +19,11 @@ namespace OrderManagement.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {   
-            var dbConfig = new MyShopDbConfig();
+            var dbConfig = new TodoDbConfig();
             Configuration.Bind("DbConfig", dbConfig);
 
-            var apiConfig = new ExternalCustomersApiConfig();
+            var apiConfig = new ExternalTodoApiConfig();
             Configuration.Bind("ApiConfig", apiConfig);
-
-            services.UseCustomerManagementServices();
-            services.UseFakeCustomerDataAccess(dbConfig);
-            services.UseExternalCustomersApi(apiConfig);
-            
-            
 
             services.AddLogging();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

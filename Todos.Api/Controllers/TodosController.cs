@@ -1,22 +1,19 @@
 ﻿using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using OrderManagement.Domain;
-using OrderManagement.Services;
-using OrderManagement.Shipping.Api;
+using Todos.Api.Abstractions;
 
-namespace OrderManagement.Api.Controllers
+namespace Todos.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrdersController : ControllerBase
+    public class TodosController : ControllerBase
     {
-        private readonly ICustomerManagementService _orderManagementService;
-        private readonly ILogger<OrdersController> _logger;
+        private readonly ITodoManagementService _orderManagementService;
+        private readonly ILogger<TodosController> _logger;
 
-        public OrdersController(ICustomerManagementService orderManagementService, ILogger<OrdersController> logger)
+        public TodosController(ITodoManagementService orderManagementService, ILogger<TodosController> logger)
         {
             _orderManagementService = orderManagementService;
             _logger = logger;
@@ -26,7 +23,7 @@ namespace OrderManagement.Api.Controllers
         public async Task<IActionResult> Get()
         {
             _logger.LogInformation("Getting orders");
-            var orders = await _orderManagementService.GetCustomersAsync();
+            var orders = await _orderManagementService.GetTodosAsync();
 
             if (orders == null || !orders.Any())
             {
